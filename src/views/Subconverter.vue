@@ -507,8 +507,14 @@ export default {
 
       this.loading = true;
 
-      let data = new FormData();
-      data.append("longUrl", btoa(this.customSubUrl));
+      // let data = new FormData();
+      // data.append("longUrl", btoa(this.customSubUrl));
+      let data = {
+        signature: '615a594701',
+        action: 'shorturl',
+        format: 'json',
+        url:this.customSubUrl
+      }
 
       this.$axios
         .post(shortUrlBackend, data, {
@@ -517,11 +523,12 @@ export default {
           }
         })
         .then(res => {
-          if (res.data.Code === 1 && res.data.ShortUrl !== "") {
-            this.curtomShortSubUrl = res.data.ShortUrl;
-            this.$copyText(res.data.ShortUrl);
+          
+          if (res.data.shorturl) {
+            this.curtomShortSubUrl = res.data.shorturl
+            this.$copyText(res.data.shorturl);
             this.$message.success("短链接已复制到剪贴板");
-          } else {
+          }else {
             this.$message.error("短链接获取失败：" + res.data.Message);
           }
         })
