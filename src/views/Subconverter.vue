@@ -310,7 +310,7 @@ export default {
         sourceSubUrl: "",
         clientType: "",
         customBackend: "",
-        remoteConfig: "",
+        remoteConfig: '',
         excludeRemarks: "",
         includeRemarks: "",
         filename: "",
@@ -438,10 +438,11 @@ export default {
         this.form.insert;
 
       if (this.advanced === "2") {
-        if (this.form.remoteConfig) {
-          this.customSubUrl +=
-            "&config=" + encodeURIComponent(this.form.remoteConfig);
-        }
+        // if (this.form.remoteConfig) {
+        //   this.customSubUrl +=
+        //     "&config=" + encodeURIComponent(this.form.remoteConfig);
+        // }
+        this.customSubUrl += "&config=" + encodeURIComponent(this.sampleConfig);
         if (this.form.excludeRemarks) {
           this.customSubUrl +=
             "&exclude=" + encodeURIComponent(this.form.excludeRemarks);
